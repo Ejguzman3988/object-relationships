@@ -1,21 +1,13 @@
 class Genre
     @@all = []
 
-    attr_accessor :name
+    attr_accessor :name, :author, :book
 
-    def initialize(name)
+    def initialize(name, author_object, book_object)
         @name = name
-        @books = []
-        @authors = []
+        @author = author_object
+        @book = book_object
         @@all << self
-    end
-
-    def add_book(book_object)
-        @books << book_object
-    end
-
-    def add_author(author_object)
-        @authors << author_object
     end
 
     def authors

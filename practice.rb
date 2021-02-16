@@ -3,50 +3,37 @@ require_relative 'author'
 require_relative 'book'
 require_relative 'genre'
 
-
-
-
-### Has Many / Belongs To
-genre1 = Genre.new("Fiction")
-genre2 = Genre.new("Test")
-
-
 ### jk_rowling.books => all of jks books
 # author 
 jk_rowling = Author.new("J.K. Rowling", 50)
-
 eri = Author.new("Eri", 26)
-# calling an instance method
-book1 = Book.new("Test Book 1", 100, eri)
-book2 = Book.new("Test Book 2", 100, eri)
-book3 = Book.new("Test Book 3", 100, eri)
 
+# Books
+book1 = Book.new("Test Book 1", 100)
+book2 = Book.new("Test Book 2", 100)
+book3 = Book.new("Test Book 3", 100)
 
-# book
-potter1 = Book.new("Sorceror Stone", 377, jk_rowling)
+potter1 = Book.new("Sorceror Stone", 377)
+potter2 = Book.new("Harry potter book 2", 377)
+potter3 = Book.new("Happy potter book 3", 377)
 
-potter2 = Book.new("Harry potter book 2", 377, jk_rowling)
+#Creating Genres 
+# CREATED AN ASSOCIATION BETWEEN THE BOOK and THE AUTHOR
+genre1 = Genre.new("Test", eri, book1) #=> book1 & eri
+genre2 = Genre.new("Test", eri, book2) #=> book1 & eri
+genre3 = Genre.new("Test", eri, book3) #=> book1 & eri
 
-potter3 = Book.new("Happy potter book 3", 377, jk_rowling)
+# Create Potter Associations
+Genre.new("Test", jk_rowling, potter1) #=> potter1 to jk_rowling
+Genre.new("Test", jk_rowling, potter2) #=> potter2 to jk_rowling
+Genre.new("Test", jk_rowling, potter3) #=> potter3 to jk_rowling
 
-jk_rowling.books #=> 2 books inside
-
-#Fiction 
-genre1.add_book(potter1)
-genre1.add_book(potter2)
-genre1.add_book(potter3)
-
-genre2.add_book(book1)
-genre2.add_book(book2)
-genre2.add_book(book3)
-
-
-genre1.add_author(jk_rowling)
-genre1.add_author(eri)
-
-
-genre2.add_author(eri)
-
+add_jk_to_book1 = Genre.new("Test", jk_rowling, book1) #=> jk rowling & book1
 book1.authors
 
 binding.pry
+
+
+## HAS MANY THROUGH Relationship
+# BOOK HAS MANY AUTHORS THROUGH GENRES
+# AUTHOR HAS MANY BOOKS THROUGH GENRES

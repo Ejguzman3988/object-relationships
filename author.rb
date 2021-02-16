@@ -12,8 +12,14 @@ class Author
         @age = age 
     end
 
+    def genres
+        Genre.all.select { |genre| genre.author == self }
+    end
+
     def books 
         # Book.all.select {|book| book.author == self}
+        # get all books through genre
+        self.genres.map{ |genre| genre.book }
     end
 
 end
